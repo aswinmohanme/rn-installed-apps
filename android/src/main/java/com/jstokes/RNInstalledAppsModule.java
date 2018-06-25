@@ -2,6 +2,7 @@
 package com.jstokes;
 
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.ApplicationInfo;
 
 import com.facebook.react.bridge.ReactApplicationContext;
