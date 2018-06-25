@@ -43,6 +43,8 @@ public class RNInstalledAppsModule extends ReactContextBaseJavaModule {
     }
 
     private List<String> getNonSystemApps() {
+        PackageManager pm = this.reactContext.getPackageManager();
+
         List<PackageInfo> packages = this.reactContext
             .getPackageManager()
             .getInstalledPackages(0);
@@ -50,10 +52,11 @@ public class RNInstalledAppsModule extends ReactContextBaseJavaModule {
         List<String> ret = new ArrayList<>();
         for (final PackageInfo p: packages) {
             if ((p.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
-                ret.add(p.packageName);
+                ret.add(p.packageName + ", " + p.applicationInfo.loadLabel(pm));
             }
         }
         return ret;
+
     } 
     
     @Override
