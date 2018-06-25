@@ -32,13 +32,15 @@ public class RNInstalledAppsModule extends ReactContextBaseJavaModule {
     }
 
     private List<String> getApps() {
+                PackageManager pm = this.reactContext.getPackageManager();
+
         List<PackageInfo> packages = this.reactContext
             .getPackageManager()
             .getInstalledPackages(0);
 
         List<String> ret = new ArrayList<>();
         for (final PackageInfo p: packages) {
-            ret.add(p.packageName);
+                ret.add(p.packageName + ", " + p.applicationInfo.loadLabel(pm));
         }
         return ret;
     }
